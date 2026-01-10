@@ -11,7 +11,6 @@ const Sidebar = () => {
           <Image src="/assets/logo01.png" width={120} height={80} alt="Logo" />
         </div>
 
-        {/* <nav className={styles.nav}> */}
         <div className={styles.entries}>
           {SideBarUtils.map((item) => {
             const Icon = item.icon;
@@ -23,11 +22,7 @@ const Sidebar = () => {
             );
           })}
         </div>
-        {/* </nav> */}
 
-        {/* <div className={styles.footer}>
-          <button className={styles.logout}>Logout</button>
-        </div> */}
       </div>
     </aside>
   );
