@@ -61,6 +61,16 @@
   color: #6b4eff;
 }
 
+
+.selected{
+   background: linear-gradient(
+    90deg,
+    rgba(152, 108, 222, 0.12),
+    rgba(152, 108, 222, 0.05)
+  );
+  color: #6b4eff;
+}
+
 /* Icon styling */
 .icon {
   color: #6b4eff;
