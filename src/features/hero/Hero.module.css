@@ -9,7 +9,7 @@ body::-webkit-scrollbar{
 
 /* Main content container */
 .mainCard {
-  height: 85vh;
+  height: 88vh;
   background: #ffffff;
   border-radius: 20px;
   border: 1px solid #c9b8ff;
@@ -18,7 +18,8 @@ body::-webkit-scrollbar{
 
   display: flex;
   flex-direction: column;
-  gap: 20px; /* ✅ IMPORTANT */
+  overflow-y: scroll;
+  gap: 20px; 
 }
 
 

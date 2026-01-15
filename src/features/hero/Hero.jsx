@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Hero.module.css";
 import {
   ThumbsUp,
@@ -9,15 +9,40 @@ import {
 } from "lucide-react";
 import { DUMMY_DATA } from "./HeroUtils";
 
+
+
 const Hero = () => {
+
+
+
+  const [data, setData] = useState([])
+
+
+
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/api/dashboard?type=recent");
+      const data = await response.json(); 
+      setData(data)
+      console.log('Actual Data:', data);
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  };
+
+  fetchData();
+}, []);
   return (
     <div className={styles.heroWrapper}>
       <div className={styles.mainCard}>
         {/* Post Card */}
 
-        {DUMMY_DATA?.map((item, idx) => (
-          <>
-            <div className={styles.postCard}>
+        {data?.data?.map((item, idx) => (
+          // <>
+            <div className={styles.postCard} key={idx}>
               {/* Post Header */}
               <div className={styles.postHeader}>
                 <div className={styles.avatar}>A</div>
@@ -53,7 +78,7 @@ const Hero = () => {
                 </button>
               </div>
             </div>
-          </>
+          // </>
         ))}
       </div>
     </div>
