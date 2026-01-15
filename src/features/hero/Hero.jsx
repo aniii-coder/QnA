@@ -8,42 +8,23 @@ import {
   Bookmark,
 } from "lucide-react";
 import { DUMMY_DATA } from "./HeroUtils";
-
-
+import { useGetRecentPostsQuery } from "../sidebar/SidebarApi";
+import { useRouter } from "next/router";
+import Loader from "../../components/loader/Loader";
 
 const Hero = () => {
+  const router = useRouter();
+  const type = router?.query?.type
+  const { data: recentPost, isLoading } = useGetRecentPostsQuery(type,  {skip: !type });
 
-
-
-  const [data, setData] = useState([])
-
-
-
-
-
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      const response = await fetch("http://localhost:3000/api/dashboard?type=recent");
-      const data = await response.json(); 
-      setData(data)
-      console.log('Actual Data:', data);
-    } catch (error) {
-      console.error('Fetch error:', error);
-    }
-  };
-
-  fetchData();
-}, []);
   return (
     <div className={styles.heroWrapper}>
-      <div className={styles.mainCard}>
-        {/* Post Card */}
-
-        {data?.data?.map((item, idx) => (
-          // <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={styles.mainCard}>
+          {recentPost?.data?.map((item, idx) => (
             <div className={styles.postCard} key={idx}>
-              {/* Post Header */}
               <div className={styles.postHeader}>
                 <div className={styles.avatar}>A</div>
                 <div>
@@ -52,14 +33,10 @@ useEffect(() => {
                 </div>
               </div>
 
-              {/* Post Content */}
               <div className={styles.postContent}>
-                <p>
-                  {item.content}
-                </p>
+                <p>{item.content}</p>
               </div>
 
-              {/* Post Actions */}
               <div className={styles.postActions}>
                 <button>
                   <ThumbsUp size={18} /> <span>{item.likes}</span>
@@ -78,9 +55,10 @@ useEffect(() => {
                 </button>
               </div>
             </div>
-          // </>
-        ))}
-      </div>
+            // </>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

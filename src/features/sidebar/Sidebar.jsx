@@ -10,11 +10,11 @@ const Sidebar = () => {
   const handleSidebarClick = (item) => {
     router.push(`/dashboard?type=${item?.id}`);
   };
-useEffect(() => {
-  if (!router.query.type) {
-    router.replace("/dashboard?type=recent");
-  }
-}, [router.query.type]);
+  useEffect(() => {
+    if (!router.query.type) {
+      router.replace("/dashboard?type=recent");
+    }
+  }, [router.query.type]);
 
   return (
     <aside className={styles.sidebar}>

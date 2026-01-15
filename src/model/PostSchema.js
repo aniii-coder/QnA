@@ -9,7 +9,7 @@ const PostSchema = new mongoose.Schema(
     },
 
     avatar: {
-      type: String, // e.g. "R"
+      type: String, 
       required: true,
       uppercase: true,
       maxlength: 2,
