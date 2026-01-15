@@ -9,7 +9,9 @@ export default async function getRecentPost(req, res) {
     return res.status(200).json({
       success: true,
       message: "Recent posts fetched successfully",
-      data: posts,
+      data: posts.slice(0,10),
+      currPageCount: posts.slice(0,10)?.length,
+      totalCount: posts?.length
     });
   } catch (error) {
     return res.status(500).json({
