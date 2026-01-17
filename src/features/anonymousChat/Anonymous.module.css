@@ -1,6 +1,6 @@
 .chatWrapper {
   height: 95%;
-  width: 100%;
+  width: 80%;
   background: #faf9ff;
   border-radius: 16px;
   display: flex;
@@ -80,13 +80,19 @@
 
 /* Messages */
 .message {
-  max-width: 75%;
+  max-width: 70%;
   padding: 10px 14px;
   border-radius: 12px;
   font-size: 14px;
   line-height: 1.4;
   position: relative;
+
+  /* 🔽 IMPORTANT FIXES */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
+
 
 .received {
   background: #ffffff;

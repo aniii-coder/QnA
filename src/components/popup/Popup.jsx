@@ -22,10 +22,10 @@ const Popup = ({ isOpen, onClose, title, children, isCloseGiven=false }) => {
 
         {/* Footer */}
         <div className={styles.footer}>
-          <button className={styles.cancelBtn} onClick={onClose}>
+          {/* <button className={styles.cancelBtn} onClick={onClose}>
             Cancel
-          </button>
-          <button className={styles.primaryBtn}>Confirm</button>
+          </button> */}
+          <button className={styles.primaryBtn} onClick={onClose}>Confirm</button>
         </div>
       </div>
     </div>

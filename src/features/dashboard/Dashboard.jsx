@@ -14,33 +14,58 @@ const Dashboard = () => {
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    const { name, value } = e.target;
+
+    console.log("value :>> ", value);
+
+    switch (name) {
+      case "name":
+        setName(value);
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
-    if (router?.query?.type === 'anonymous') {
+    if (router.query.type === "anonymous") {
       setOpen(true);
+    } else {
+      setOpen(false);
     }
-  }, [router]);
+  }, [router.query.type]);
+
   return (
     <div style={{ display: "flex", alignItems: "center", height: "100vh" }}>
       <Sidebar />
       {router?.query?.type === "recent" ? (
         <Hero />
       ) : router?.query?.type === "anonymous" ? (
-        <Anonymous />
+        <Anonymous open={open} name={name} />
       ) : router?.query?.type === "notification" ? null : null}
 
       {open && (
         <Popup
           isOpen={open}
-          onClose={() => setOpen(false)}
+          onClose={() => {
+            if (name.trim().length <= 0) {
+              alert("please enter the valid name ");
+            } else {
+              setOpen(false);
+            }
+          }}
           title={"May I know your name?"}
         >
           <div className={styles.inputWrapper}>
-            {/* <label className={styles.label}>Your name</label> */}
             <input
               type="text"
+              name="name"
               placeholder="Enter your name"
               className={styles.input}
+              onChange={handleSubmit}
             />
             <p className={styles.helperText}>
               This will be visible to others in the chat*
